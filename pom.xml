@@ -7,6 +7,30 @@
    <groupId>se.alipsa</groupId>
    <artifactId>fx-yearmonth-picker</artifactId>
    <version>1.0-SNAPSHOT</version>
+   <packaging>jar</packaging>
+
+   <name>YearMonth picker</name>
+   <description>YearMonth picker for javafx 8 and later</description>
+   <url>https://github.com/perNyfelt/fx-yearmonth-picker</url>
+   <licenses>
+      <license>
+         <name>MIT License</name>
+         <url>https://raw.githubusercontent.com/perNyfelt/fx-yearmonth-picker/master/LICENSE</url>
+      </license>
+   </licenses>
+   <developers>
+      <developer>
+         <name>Per Nyfelt</name>
+         <email>per.nyfelt@alipsa.se</email>
+         <organization>Alipsa HB</organization>
+         <organizationUrl>http://www.alipsa.se</organizationUrl>
+      </developer>
+   </developers>
+   <scm>
+      <connection>scm:git:https://github.com/perNyfelt/fx-yearmonth-picker.git</connection>
+      <developerConnection>scm:git:https://github.com/perNyfelt/fx-yearmonth-picker.git</developerConnection>
+      <url>https://github.com/perNyfelt/fx-yearmonth-picker/tree/master</url>
+   </scm>
 
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -48,5 +72,38 @@
          </plugin>
       </plugins>
    </build>
-
+   <profiles>
+      <profile>
+         <id>release</id>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-gpg-plugin</artifactId>
+                  <version>1.6</version>
+                  <executions>
+                     <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                           <goal>sign</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+               </plugin>
+               <plugin>
+                  <groupId>org.sonatype.plugins</groupId>
+                  <artifactId>nexus-staging-maven-plugin</artifactId>
+                  <version>1.6.8</version>
+                  <extensions>true</extensions>
+                  <configuration>
+                     <serverId>ossrh</serverId>
+                     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                  </configuration>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+   </profiles>
 </project>
