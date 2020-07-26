@@ -5,7 +5,7 @@ A year-month date picker component for java fx
 There are two versions:
 1. YearMonthPickerCombo - a combobox that return a YearMonth. This one works fine.
 2. YearMonthPicker - A custom control that resembles DatePicker where the user can click a calendar and then pick the 
-desired year month. THis control is still work in progress.
+desired year month. This control is still work in progress.
 
 
 See test.alipsa.ymp.YearMonthPickerExample for a simple example of both. 
