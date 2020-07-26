@@ -10,7 +10,7 @@ desired year month. This control is still work in progress.
 See test.alipsa.ymp.YearMonthPickerExample for an simple example of both. Here's an example screenshot:
 <img src="https://raw.githubusercontent.com/perNyfelt/fx-yearmonth-picker/master/docs/example.png" alt="Example Screenshot" width="350" height="150" />
 
-### se.alipsa.ymp.YearMonthPickerCombo
+## se.alipsa.ymp.YearMonthPickerCombo
 There are 3 constructors:
 
 __YearMonthPickerCombo()__
