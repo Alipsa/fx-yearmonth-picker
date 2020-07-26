@@ -7,7 +7,8 @@ There are two versions:
 desired year month. This control is still work in progress.
 
 
-See test.alipsa.ymp.YearMonthPickerExample for a simple example of both. 
+See test.alipsa.ymp.YearMonthPickerExample for a simple example of both. Here's an example screenshot:
+![Example Screenshot](https://raw.githubusercontent.com/perNyfelt/fx-yearmonth-picker/master/example.png "Example Screenshot")
 
 ### YearMonthPickerCombo
 There are 3 constructors:
