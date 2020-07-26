@@ -1,10 +1,13 @@
 package se.alipsa.ymp;
 
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 import java.time.YearMonth;
 import java.util.Locale;
@@ -53,11 +56,21 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
     }
 
     private void showHideSelectBox() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("YearMonthPicker calendar control");
-        alert.setHeaderText("Not yet implemented");
-        alert.setContentText("Use YearMonthPickerCombo for now instead!");
-        alert.showAndWait();
+        //Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        //alert.setTitle("YearMonthPicker calendar control");
+        //alert.setHeaderText("Not yet implemented");
+        //alert.setContentText("Use YearMonthPickerCombo for now instead!");
+        //alert.showAndWait();
+        Dialog<YearMonth> selectBox = new Dialog<>();
+        BorderPane borderPane = new BorderPane();
+        selectBox.getDialogPane().getChildren().add(borderPane);
+        HBox top = new HBox();
+        borderPane.setTop(top);
+        Button yearBackButton = new Button("<");
+        Label yearLabel = new Label(String.valueOf(getValue().getYear()));
+        Button yearForwardButton = new Button(">");
+        top.getChildren().addAll(yearBackButton, yearLabel, yearForwardButton);
+        selectBox.showAndWait();
     }
 
 
