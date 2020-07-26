@@ -7,16 +7,32 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
 import java.time.YearMonth;
+import java.util.Locale;
 
 public class YearMonthPicker extends ComboBoxBase<YearMonth> {
 
+    private Locale locale;
+    private YearMonth start;
+    private YearMonth end;
+
     public YearMonthPicker() {
-        createLayout();
+        this(YearMonth.now());
     }
 
     public YearMonthPicker(YearMonth initial) {
-        this();
+        this(initial, Locale.getDefault());
+    }
+
+    public YearMonthPicker(YearMonth initial, Locale locale) {
+        this(initial.minusYears(3), initial.plusYears(3), initial, locale);
+    }
+
+    public YearMonthPicker(YearMonth from, YearMonth to, YearMonth initial, Locale locale) {
+        start = from;
+        end = to;
         setValue(initial);
+        setLocale(locale);
+        createLayout();
     }
 
     private void createLayout() {
@@ -47,5 +63,29 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
 
     @Override protected Skin<?> createDefaultSkin() {
         return new YearMonthPickerSkin(this);
+    }
+
+    public Locale getLocale() {
+        return locale;
+    }
+
+    private void setLocale(Locale locale) {
+        this.locale = locale;
+    }
+
+    public YearMonth getStart() {
+        return start;
+    }
+
+    private void setStart(YearMonth start) {
+        this.start = start;
+    }
+
+    public YearMonth getEnd() {
+        return end;
+    }
+
+    private void setEnd(YearMonth end) {
+        this.end = end;
     }
 }
