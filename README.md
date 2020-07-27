@@ -11,7 +11,6 @@ See test.alipsa.ymp.YearMonthPickerExample for a simple example of both. Here's 
 <img src="https://raw.githubusercontent.com/perNyfelt/fx-yearmonth-picker/master/docs/example.png" alt="Example Screenshot" width="350" height="150" />
 
 ## se.alipsa.ymp.YearMonthPickerCombo
-<img src="https://raw.githubusercontent.com/perNyfelt/fx-yearmonth-picker/master/docs/example2.png" alt="YearMonthPickerCombo Screenshot" width="350" />
 There are 3 constructors:
 
 __YearMonthPickerCombo()__
@@ -26,7 +25,7 @@ initial value as the default selected.
 
 
 ## se.alipsa.ymp.YearMonthPicker
-
+<img src="https://raw.githubusercontent.com/perNyfelt/fx-yearmonth-picker/master/docs/example2.png" alt="YearMonthPickerCombo Screenshot" width="350" />
 There are 4 constructors:
 
 __YearMonthPicker()__ This gives you YearMonths 3 year back and 3 years into the future from now in 
