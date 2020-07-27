@@ -10,8 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.stage.Popup;
 
 import java.time.Year;
@@ -54,15 +53,15 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
         this.getChildren().add(borderPane);
         HBox topBox = new HBox();
         borderPane.setTop(topBox);
-        String year = getValue() == null ? initial.toString() : getValue().toString();
-        inputField = new TextField(year);
+        setValue(initial);
+        inputField = new TextField(getValue().toString());
         inputField.setTooltip(new Tooltip("yyyy-MM"));
         inputField.setPrefColumnCount(7);
         inputField.setPrefHeight(30);
         inputField.setEditable(false);
         topBox.getChildren().add(inputField);
         Button pickerButton = new Button();
-        pickerButton.setOnAction(a -> handlePopup(a));
+        pickerButton.setOnAction(this::handlePopup);
         topBox.getChildren().add(pickerButton);
         pickerButton.setGraphic(new ImageView(new Image("calendar.png", 20, 20, true, true)));
         borderPane.autosize();
@@ -81,7 +80,8 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
         }
         popup = new Popup();
         BorderPane selectBox = new BorderPane();
-        selectBox.setStyle("-fx-background-color:white;");
+        //selectBox.setStyle("-fx-background-color:white; -fx-border-color: derive(-fx-color,-23%)");
+        selectBox.getStyleClass().add("list-view");
         popup.getContent().add(selectBox);
 
         final ObservableList<YearMonth> items = FXCollections.observableArrayList();
@@ -89,8 +89,7 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
         top.setPadding(new Insets(3));
         top.setAlignment(Pos.CENTER);
         selectBox.setTop(top);
-        String year = getValue() == null ? String.valueOf(initial.getYear()) : String.valueOf(getValue().getYear());
-        Label yearLabel = new Label(year);
+        Label yearLabel = new Label(String.valueOf(getValue().getYear()));
         yearLabel.setPadding(new Insets(0,7,0,7));
         Button yearBackButton = new Button("<");
         yearBackButton.setOnAction(e -> {
