@@ -10,6 +10,12 @@ desired year month.
 See test.alipsa.ymp.YearMonthPickerExample for a simple example of both. Here's an example screenshot:
 <img src="https://raw.githubusercontent.com/perNyfelt/fx-yearmonth-picker/master/docs/example.png" alt="Example Screenshot" width="350" height="150" />
 
+Both works similar to a compbobox i.e. you do setOnAction() to capture the value change e.g.
+```java
+YearMonthPicker ymp = new YearMonthPicker();
+ymp.setOnAction(a -> System.out.println("Default YearMonthPicker, Value picked was " + ymp.getValue()));
+```
+
 ## se.alipsa.ymp.YearMonthPickerCombo
 There are 3 constructors:
 
