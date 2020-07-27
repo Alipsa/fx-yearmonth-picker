@@ -4,12 +4,12 @@ import javafx.scene.control.SkinBase;
 
 public class YearMonthPickerSkin extends SkinBase<YearMonthPicker> {
 
-    private YearMonthPicker datePicker;
+    private YearMonthPicker yearMonthPicker;
 
-    public YearMonthPickerSkin(YearMonthPicker datePicker) {
-        super(datePicker);
+    public YearMonthPickerSkin(YearMonthPicker yearMonthPicker) {
+        super(yearMonthPicker);
 
-        this.datePicker = datePicker;
+        this.yearMonthPicker = yearMonthPicker;
     }
 
     protected double computeMinWidth(double height, double topInset, double rightInset, double bottomInset, double leftInset) {

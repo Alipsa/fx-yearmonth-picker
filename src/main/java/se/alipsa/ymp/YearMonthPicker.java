@@ -2,6 +2,7 @@ package se.alipsa.ymp;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -20,13 +21,12 @@ import java.util.Locale;
 public class YearMonthPicker extends ComboBoxBase<YearMonth> {
 
     private Locale locale;
-    private YearMonth start;
-    private YearMonth end;
+    private YearMonth startYearMonth;
+    private YearMonth endYearMonth;
+    private YearMonth initial;
     private TextField inputField;
     private String monthPattern;
     private Popup popup;
-
-    private BorderPane borderPane;
 
     public YearMonthPicker() {
         this(YearMonth.now());
@@ -41,33 +41,44 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
     }
 
     public YearMonthPicker(YearMonth from, YearMonth to, YearMonth initial, Locale locale, String monthPattern) {
-        start = from;
-        end = to;
-        setValue(initial);
+        setStart(from);
+        setEnd(to);
+        setInitial(initial);
         setLocale(locale);
-        this.monthPattern = monthPattern;
+        setMonthPattern(monthPattern);
         createLayout();
     }
 
     private void createLayout() {
-        borderPane = new BorderPane();
+        BorderPane borderPane = new BorderPane();
         this.getChildren().add(borderPane);
         HBox topBox = new HBox();
         borderPane.setTop(topBox);
-        inputField = new TextField(getValue() + "");
+        String year = getValue() == null ? initial.toString() : getValue().toString();
+        inputField = new TextField(year);
         inputField.setTooltip(new Tooltip("yyyy-MM"));
         inputField.setPrefColumnCount(7);
         inputField.setPrefHeight(30);
         inputField.setEditable(false);
         topBox.getChildren().add(inputField);
         Button pickerButton = new Button();
-        pickerButton.setOnAction(a -> showHideSelectBox());
+        pickerButton.setOnAction(a -> handlePopup(a));
         topBox.getChildren().add(pickerButton);
         pickerButton.setGraphic(new ImageView(new Image("calendar.png", 20, 20, true, true)));
         borderPane.autosize();
     }
 
+    private void handlePopup(ActionEvent a) {
+        a.consume(); //need to consume the event, otherwise it is triggering onAction for clients
+        showHideSelectBox();
+    }
+
     private void showHideSelectBox() {
+        if (popup != null) {
+            popup.hide();
+            popup = null;
+            return;
+        }
         popup = new Popup();
         BorderPane selectBox = new BorderPane();
         selectBox.setStyle("-fx-background-color:white;");
@@ -78,28 +89,30 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
         top.setPadding(new Insets(3));
         top.setAlignment(Pos.CENTER);
         selectBox.setTop(top);
-        Label yearLabel = new Label(String.valueOf(getValue().getYear()));
+        String year = getValue() == null ? String.valueOf(initial.getYear()) : String.valueOf(getValue().getYear());
+        Label yearLabel = new Label(year);
         yearLabel.setPadding(new Insets(0,7,0,7));
         Button yearBackButton = new Button("<");
         yearBackButton.setOnAction(e -> {
-            int year = Year.parse(yearLabel.getText()).minusYears(1).getValue();
-            yearLabel.setText(String.valueOf(year));
+            int yearNum = Year.parse(yearLabel.getText()).minusYears(1).getValue();
+            if (yearNum < startYearMonth.getYear()) return;
+            yearLabel.setText(String.valueOf(yearNum));
             items.clear();
             for (int i = 1; i <= 12; i++) {
-                items.add(YearMonth.of(year, i));
+                items.add(YearMonth.of(yearNum, i));
             }
         });
         Button yearForwardButton = new Button(">");
         yearForwardButton.setOnAction(e -> {
-            int year = Year.parse(yearLabel.getText()).plusYears(1).getValue();
-            yearLabel.setText(String.valueOf(year));
+            int yearNum = Year.parse(yearLabel.getText()).plusYears(1).getValue();
+            if (yearNum > endYearMonth.getYear()) return;
+            yearLabel.setText(String.valueOf(yearNum));
             items.clear();
             for (int i = 1; i <= 12; i++) {
-                items.add(YearMonth.of(year, i));
+                items.add(YearMonth.of(yearNum, i));
             }
         });
         top.getChildren().addAll(yearBackButton, yearLabel, yearForwardButton);
-
 
         for (int i = 1; i <= 12; i++) {
             items.add(YearMonth.of(Integer.parseInt(yearLabel.getText()), i));
@@ -113,7 +126,10 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
             if (newYearMonth == null) return;
             inputField.setText(newYearMonth.toString());
             setValue(newYearMonth);
+            //System.out.println("Value selected was " + newYearMonth);
+            this.fireEvent(new ActionEvent());
             popup.hide();
+            popup = null;
         });
 
         Parent parent = getParent();
@@ -123,6 +139,12 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
         double layoutY = childBounds.getMaxY() + parentBounds.getMinY() + parent.getScene().getY() + parent.getScene().getWindow().getY();
         popup.show(this, layoutX, layoutY);
         popup.requestFocus();
+        popup.focusedProperty().addListener((observableValue, aBoolean, t1) -> {
+            if (t1 != aBoolean) {
+                popup.hide();
+                popup = null;
+            }
+        });
     }
 
 
@@ -139,18 +161,34 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
     }
 
     public YearMonth getStart() {
-        return start;
+        return startYearMonth;
     }
 
     private void setStart(YearMonth start) {
-        this.start = start;
+        this.startYearMonth = start;
     }
 
     public YearMonth getEnd() {
-        return end;
+        return endYearMonth;
     }
 
     private void setEnd(YearMonth end) {
-        this.end = end;
+        this.endYearMonth = end;
+    }
+
+    public YearMonth getInitial() {
+        return initial;
+    }
+
+    private void setInitial(YearMonth initial) {
+        this.initial = initial;
+    }
+
+    public String getMonthPattern() {
+        return monthPattern;
+    }
+
+    private void setMonthPattern(String monthPattern) {
+        this.monthPattern = monthPattern;
     }
 }

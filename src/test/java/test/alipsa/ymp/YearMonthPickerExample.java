@@ -1,5 +1,6 @@
 package test.alipsa.ymp;
 
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -20,18 +21,23 @@ public class YearMonthPickerExample extends Application {
         VBox vBox = new VBox();
         vBox.setPadding(new Insets(10));
 
-        HBox hbox = new HBox(new Label("YearMonthPicker: "), new YearMonthPicker());
+        YearMonthPicker ymp = new YearMonthPicker();
+        ymp.setOnAction(a -> System.out.println("Default YearMonthPicker, Value picked was " + ymp.getValue()));
+        HBox hbox = new HBox(new Label("YearMonthPicker: "), ymp);
         hbox.setPadding(new Insets(10));
         vBox.getChildren().add(hbox);
 
         YearMonthPicker picker = new YearMonthPicker(YearMonth.of(2019, 1), YearMonth.of(2020, 1),
             YearMonth.of(2019,12), Locale.SIMPLIFIED_CHINESE, "MMMM");
+        picker.setOnAction(a -> System.out.println("Chinese YearMonthPicker, Value picked was " + picker.getValue()));
         HBox hbox2 = new HBox(new Label("YearMonthPicker: "), picker);
         hbox2.setPadding(new Insets(10));
         vBox.getChildren().add(hbox2);
 
 
-        HBox cboBox = new HBox(new Label("YearMonthPickerCombo: "), new YearMonthPickerCombo());
+        YearMonthPickerCombo ympc = new YearMonthPickerCombo();
+        ympc.setOnAction(a -> System.out.println("YearMonthPickerCombo: value picked was " + ympc.getValue()));
+        HBox cboBox = new HBox(new Label("YearMonthPickerCombo: "), ympc);
         cboBox.setPadding(new Insets(10));
         vBox.getChildren().add(cboBox);
         Scene scene = new Scene(vBox, 350, 200);
