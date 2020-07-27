@@ -36,8 +36,10 @@ the system default locale.
 
 __YearMonthPicker(YearMonth initial, Locale locale)__ 
 This gives you YearMonths 3 year back and 3 years into the future from initial in 
-the specified locale.
+the specified locale. Month names are in full (long) format.
 
-__YearMonthPicker(YearMonth from, YearMonth to, YearMonth initial, Locale locale)__ 
+__YearMonthPicker(YearMonth from, YearMonth to, YearMonth initial, Locale locale, String monthNameFormat)__ 
 This gives you all yearmonths between from and to (both from and to included) with the
-initial value as the default selected in the locale specified.
+initial value as the default selected in the locale specified. MonthNameFormat is how the
+month names will be displayed in the popup. Default is "MMMM" (long format), set to "MMM" for the letter short style
+or include the year with "yyyy-MMM" or whatever.
