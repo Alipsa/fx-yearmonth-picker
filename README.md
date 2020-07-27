@@ -2,7 +2,7 @@
 A year-month date picker component for java fx. Requires java fx 8 or higher (tested with jdk/fx 8 and 11)
 
 There are two versions:
-1. YearMonthPickerCombo - a combobox that return a YearMonth. This one works fine.
+1. YearMonthPickerCombo - a combobox that return a YearMonth. 
 2. YearMonthPicker - A custom control that resembles DatePicker where the user can click a calendar and then pick the 
 desired year month.
 
