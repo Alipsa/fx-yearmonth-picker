@@ -17,7 +17,7 @@ ymp.setOnAction(a -> System.out.println("Default YearMonthPicker, Value picked w
 ```
 
 ## se.alipsa.ymp.YearMonthPickerCombo
-There are 3 constructors:
+There are 5 constructors:
 
 __YearMonthPickerCombo()__
 This gives you YearMonths 3 year back and 3 years into the future from now.
@@ -29,6 +29,13 @@ __YearMonthPickerCombo(YearMonth from, YearMonth to, YearMonth initial)__
 This gives you all yearmonths between from and to (both from and to included) with the
 initial value as the default selected.
 
+__YearMonthPickerCombo(YearMonth from, YearMonth to, YearMonth initial, String format)__
+This gives you all yearmonths between from and to (both from and to included) with the
+initial value as the default selected displayed in the format specified for the default locale.
+
+__YearMonthPickerCombo(YearMonth from, YearMonth to, YearMonth initial, String format, Locale locale)__
+This gives you all yearmonths between from and to (both from and to included) with the
+initial value as the default selected displayed in the format specified for the locale specified.
 
 ## se.alipsa.ymp.YearMonthPicker
 <img src="https://raw.githubusercontent.com/perNyfelt/fx-yearmonth-picker/master/docs/example2.png" alt="YearMonthPickerCombo Screenshot" width="350" />

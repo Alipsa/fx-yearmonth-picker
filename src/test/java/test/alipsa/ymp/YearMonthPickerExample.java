@@ -34,13 +34,20 @@ public class YearMonthPickerExample extends Application {
         hbox2.setPadding(new Insets(10));
         vBox.getChildren().add(hbox2);
 
-
         YearMonthPickerCombo ympc = new YearMonthPickerCombo();
         ympc.setOnAction(a -> System.out.println("YearMonthPickerCombo: value picked was " + ympc.getValue()));
         HBox cboBox = new HBox(new Label("YearMonthPickerCombo: "), ympc);
         cboBox.setPadding(new Insets(10));
         vBox.getChildren().add(cboBox);
-        Scene scene = new Scene(vBox, 350, 200);
+
+        YearMonthPickerCombo ympc2 = new YearMonthPickerCombo(YearMonth.now().minusYears(2),
+                YearMonth.now().plusYears(2), YearMonth.now(), "LLL yy", Locale.forLanguageTag("SE_sv"));
+        ympc2.setOnAction(a -> System.out.println("YearMonthPickerCombo: value picked was " + ympc2.getValue()));
+        HBox cboBox2 = new HBox(new Label("YearMonthPickerCombo: "), ympc2);
+        cboBox2.setPadding(new Insets(10));
+        vBox.getChildren().add(cboBox2);
+
+        Scene scene = new Scene(vBox, 350, 220);
         stage.setScene(scene);
         stage.show();
     }
