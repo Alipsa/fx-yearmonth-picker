@@ -2,15 +2,13 @@ package se.alipsa.ymp;
 
 import javafx.scene.control.ListCell;
 
-import java.text.DateFormatSymbols;
-import java.text.SimpleDateFormat;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class YearMonthCell extends ListCell<YearMonth> {
 
-  private DateTimeFormatter dateFormat;
+  private final DateTimeFormatter dateFormat;
 
   YearMonthCell(Locale locale, String format) {
     dateFormat = DateTimeFormatter.ofPattern(format, locale);

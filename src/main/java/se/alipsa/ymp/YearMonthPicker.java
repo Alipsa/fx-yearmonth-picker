@@ -27,7 +27,7 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
     private TextField inputField;
     private String monthPattern;
     private Popup popup;
-    private DateTimeFormatter yearMonthFormatter;
+    private final DateTimeFormatter yearMonthFormatter;
 
     public YearMonthPicker() {
         this(YearMonth.now());

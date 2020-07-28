@@ -68,7 +68,7 @@ or include the year with "yyyy-MMM" or whatever. The display value (when a year 
 format provided with the yearMonthPattern argument.
 
 ## Customization
-The YearMonthPicker has a style class called "year-month-picker" and the YearMonthPickerCombo a style class called
+The YearMonthPicker has a style class called "year-month-picker", and the YearMonthPickerCombo a style class called
 "year-month-picker-combo" which can be used to specify specific css styling for the components. 
 
 Both components are styled like a default combobox.

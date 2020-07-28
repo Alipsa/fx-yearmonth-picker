@@ -9,8 +9,6 @@ import java.util.Locale;
 
 public class YearMonthPickerCombo extends ComboBox<YearMonth> {
 
-    private YearMonth value;
-
     public YearMonthPickerCombo() {
         this(YearMonth.now());
     }

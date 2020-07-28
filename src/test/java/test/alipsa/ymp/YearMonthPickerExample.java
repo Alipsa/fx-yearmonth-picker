@@ -1,6 +1,5 @@
 package test.alipsa.ymp;
 
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,7 +17,7 @@ import java.util.Locale;
 public class YearMonthPickerExample extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         VBox vBox = new VBox();
         vBox.setPadding(new Insets(10));
 
