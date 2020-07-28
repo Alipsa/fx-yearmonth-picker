@@ -56,20 +56,6 @@
                <target>8</target>
             </configuration>
          </plugin>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-jar-plugin</artifactId>
-            <version>3.2.0</version>
-            <configuration>
-               <archive>
-                  <manifest>
-                     <addClasspath>true</addClasspath>
-                     <classpathPrefix>lib/</classpathPrefix>
-                     <mainClass>se.alipsa.timereport.TimeReport</mainClass>
-                  </manifest>
-               </archive>
-            </configuration>
-         </plugin>
       </plugins>
    </build>
    <profiles>
