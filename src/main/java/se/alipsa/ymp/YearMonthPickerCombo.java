@@ -13,7 +13,6 @@ public class YearMonthPickerCombo extends ComboBox<YearMonth> {
 
     public YearMonthPickerCombo() {
         this(YearMonth.now());
-        //createLayout();
     }
 
     public YearMonthPickerCombo(YearMonth initial) {
@@ -21,14 +20,15 @@ public class YearMonthPickerCombo extends ComboBox<YearMonth> {
     }
 
     public YearMonthPickerCombo(YearMonth from, YearMonth to, YearMonth initial) {
-       this(from, to, initial, "yyyy-MM");
+       this(from, to, initial, Locale.getDefault());
     }
 
-    public YearMonthPickerCombo(YearMonth from, YearMonth to, YearMonth initial, String format) {
-        this(from, to, initial, format, Locale.getDefault());
+    public YearMonthPickerCombo(YearMonth from, YearMonth to, YearMonth initial, Locale locale) {
+        this(from, to, initial, locale, "yyyy-MM");
     }
 
-    public YearMonthPickerCombo(YearMonth from, YearMonth to, YearMonth initial, String format, Locale locale) {
+    public YearMonthPickerCombo(YearMonth from, YearMonth to, YearMonth initial, Locale locale, String format) {
+        getStyleClass().add("year-month-picker-combo");
         setValue(initial);
         YearMonth ym = from;
         while (! ym.isAfter(to)) {

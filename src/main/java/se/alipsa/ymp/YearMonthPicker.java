@@ -15,6 +15,7 @@ import javafx.stage.Popup;
 
 import java.time.Year;
 import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class YearMonthPicker extends ComboBoxBase<YearMonth> {
@@ -26,6 +27,7 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
     private TextField inputField;
     private String monthPattern;
     private Popup popup;
+    private DateTimeFormatter yearMonthFormatter;
 
     public YearMonthPicker() {
         this(YearMonth.now());
@@ -40,11 +42,17 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
     }
 
     public YearMonthPicker(YearMonth from, YearMonth to, YearMonth initial, Locale locale, String monthPattern) {
+        this(from, to, initial, locale, monthPattern, "yyyy-MM");
+    }
+
+    public YearMonthPicker(YearMonth from, YearMonth to, YearMonth initial, Locale locale, String monthPattern, String yearMonthPattern) {
+        getStyleClass().add("year-month-picker");
         setStart(from);
         setEnd(to);
         setInitial(initial);
         setLocale(locale);
         setMonthPattern(monthPattern);
+        yearMonthFormatter = DateTimeFormatter.ofPattern(yearMonthPattern, locale);
         createLayout();
     }
 
@@ -54,8 +62,7 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
         HBox topBox = new HBox();
         borderPane.setTop(topBox);
         setValue(initial);
-        inputField = new TextField(getValue().toString());
-        inputField.setTooltip(new Tooltip("yyyy-MM"));
+        inputField = new TextField(yearMonthFormatter.format(getValue()));
         inputField.setPrefColumnCount(7);
         inputField.setPrefHeight(30);
         inputField.setEditable(false);
@@ -81,7 +88,7 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
         popup = new Popup();
         BorderPane selectBox = new BorderPane();
         //selectBox.setStyle("-fx-background-color:white; -fx-border-color: derive(-fx-color,-23%)");
-        selectBox.getStyleClass().add("list-view");
+        selectBox.getStyleClass().addAll("list-view", "combo-box-popup");
         popup.getContent().add(selectBox);
 
         final ObservableList<YearMonth> items = FXCollections.observableArrayList();
@@ -123,9 +130,8 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
         listView.getSelectionModel().select(getValue());
         listView.getSelectionModel().selectedItemProperty().addListener((observableValue, oldYearMonth, newYearMonth) -> {
             if (newYearMonth == null) return;
-            inputField.setText(newYearMonth.toString());
+            inputField.setText(yearMonthFormatter.format(newYearMonth));
             setValue(newYearMonth);
-            //System.out.println("Value selected was " + newYearMonth);
             this.fireEvent(new ActionEvent());
             popup.hide();
             popup = null;
@@ -146,8 +152,8 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
         });
     }
 
-
-    @Override protected Skin<?> createDefaultSkin() {
+    @Override
+    protected Skin<?> createDefaultSkin() {
         return new YearMonthPickerSkin(this);
     }
 
