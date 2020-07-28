@@ -10,12 +10,23 @@ desired year month.
 See test.alipsa.ymp.YearMonthPickerExample for a simple example of both. Here's an example screenshot:
 <img src="https://raw.githubusercontent.com/perNyfelt/fx-yearmonth-picker/master/docs/example.png" alt="Example Screenshot" width="350" height="150" />
 
-Both works similar to a compbobox i.e. you do getValue() to get the value and
+Both works similar to a combo box i.e. you do getValue() to get the value and
 setOnAction() to capture a value change e.g.
 ```java
 YearMonthPicker ymp = new YearMonthPicker();
 ymp.setOnAction(a -> System.out.println("Default YearMonthPicker, Value picked was " + ymp.getValue()));
 ```
+
+There are no external dependencies, and the jar file is about 40kb so nice and small. You can download the jar file from 
+the release section or add the following to your maven file:
+```xml
+<dependency>
+  <groupId>se.alipsa</groupId>
+  <artifactId>fx-yearmonth-picker</artifactId>
+  <version>1.0</version>
+</dependency>
+```
+...or the equivalent to you favorite build tool.
 
 ## se.alipsa.ymp.YearMonthPickerCombo
 There are 5 constructors:

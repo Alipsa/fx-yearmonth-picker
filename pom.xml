@@ -6,7 +6,7 @@
 
    <groupId>se.alipsa</groupId>
    <artifactId>fx-yearmonth-picker</artifactId>
-   <version>1.0</version>
+   <version>1.1-SNAPSHOT</version>
    <packaging>jar</packaging>
 
    <name>YearMonth picker</name>
@@ -47,6 +47,33 @@
 
    <build>
       <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <version>3.0.0-M3</version>
+            <executions>
+               <execution>
+                  <id>enforce-releases-maven-java</id>
+                  <goals>
+                     <goal>enforce</goal>
+                  </goals>
+                  <configuration>
+                     <rules>
+                        <requireMavenVersion>
+                           <version>[3.5.2,)</version>
+                           <level>ERROR</level>
+                           <message>Please use maven version 3.5.2 or higher</message>
+                        </requireMavenVersion>
+                        <requireJavaVersion>
+                           <version>1.8.0</version>
+                           <level>WARN</level>
+                           <message>Please use Java 8 or higher</message>
+                        </requireJavaVersion>
+                     </rules>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
