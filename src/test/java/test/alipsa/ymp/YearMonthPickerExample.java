@@ -28,7 +28,7 @@ public class YearMonthPickerExample extends Application {
         hbox.setPadding(new Insets(10));
         vBox.getChildren().add(hbox);
 
-        YearMonthPicker picker = new YearMonthPicker(YearMonth.of(2019, 1), YearMonth.of(2020, 1),
+        YearMonthPicker picker = new YearMonthPicker(YearMonth.of(2019, 1), YearMonth.of(2020, 8),
             YearMonth.of(2019,12), Locale.SIMPLIFIED_CHINESE, "MMMM", "yyyy MMMM");
         picker.setOnAction(a -> System.out.println("Chinese YearMonthPicker, Value picked was " + picker.getValue()));
         HBox hbox2 = new HBox(new Label("YearMonthPicker: "), picker);

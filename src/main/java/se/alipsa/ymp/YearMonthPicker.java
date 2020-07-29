@@ -108,7 +108,10 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
             yearLabel.setText(String.valueOf(yearNum));
             items.clear();
             for (int i = 1; i <= 12; i++) {
-                items.add(YearMonth.of(yearNum, i));
+                YearMonth val = YearMonth.of(yearNum, i);
+                if (!val.isBefore(startYearMonth)) {
+                    items.add(YearMonth.of(yearNum, i));
+                }
             }
         });
         Button yearForwardButton = new Button(">");
@@ -118,7 +121,10 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
             yearLabel.setText(String.valueOf(yearNum));
             items.clear();
             for (int i = 1; i <= 12; i++) {
-                items.add(YearMonth.of(yearNum, i));
+                YearMonth val = YearMonth.of(yearNum, i);
+                if (!val.isAfter(endYearMonth)) {
+                    items.add(val);
+                }
             }
         });
         top.getChildren().addAll(yearBackButton, yearLabel, yearForwardButton);

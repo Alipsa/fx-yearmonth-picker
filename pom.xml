@@ -6,7 +6,7 @@
 
    <groupId>se.alipsa</groupId>
    <artifactId>fx-yearmonth-picker</artifactId>
-   <version>1.0.2-SNAPSHOT</version>
+   <version>1.0.2</version>
    <packaging>jar</packaging>
 
    <name>YearMonth picker</name>
