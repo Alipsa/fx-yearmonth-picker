@@ -24,7 +24,7 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
     private YearMonth startYearMonth;
     private YearMonth endYearMonth;
     private YearMonth initial;
-    private TextField inputField;
+    private Label inputField;
     private String monthPattern;
     private Popup popup;
     private final DateTimeFormatter yearMonthFormatter;
@@ -57,21 +57,24 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
     }
 
     private void createLayout() {
-        BorderPane borderPane = new BorderPane();
-        this.getChildren().add(borderPane);
-        HBox topBox = new HBox();
-        borderPane.setTop(topBox);
+        HBox pane = new HBox();
+
+        pane.setAlignment(Pos.CENTER_LEFT);
+        pane.setFillHeight(true);
+        this.getChildren().add(pane);
         setValue(initial);
-        inputField = new TextField(yearMonthFormatter.format(getValue()));
-        inputField.setPrefColumnCount(7);
-        inputField.setPrefHeight(28);
-        inputField.setEditable(false);
-        topBox.getChildren().add(inputField);
+
+        inputField = new Label(yearMonthFormatter.format(getValue()));
+        inputField.setFocusTraversable(false);
+        inputField.setPadding(new Insets(0,5,0,5));
+
+        pane.getChildren().add(inputField);
         Button pickerButton = new Button();
+        inputField.setLabelFor(pickerButton);
         pickerButton.setOnAction(this::handlePopup);
-        topBox.getChildren().add(pickerButton);
+        pane.getChildren().add(pickerButton);
         pickerButton.setGraphic(new ImageView(new Image("calendar.png", 20, 20, true, true)));
-        borderPane.autosize();
+        pane.autosize();
     }
 
     private void handlePopup(ActionEvent a) {
