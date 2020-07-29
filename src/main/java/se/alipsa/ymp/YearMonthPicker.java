@@ -64,7 +64,7 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
         setValue(initial);
         inputField = new TextField(yearMonthFormatter.format(getValue()));
         inputField.setPrefColumnCount(7);
-        inputField.setPrefHeight(30);
+        inputField.setPrefHeight(28);
         inputField.setEditable(false);
         topBox.getChildren().add(inputField);
         Button pickerButton = new Button();
