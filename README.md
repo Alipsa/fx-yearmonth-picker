@@ -23,7 +23,7 @@ the release section or add the following to your maven file:
 <dependency>
   <groupId>se.alipsa</groupId>
   <artifactId>fx-yearmonth-picker</artifactId>
-  <version>1.0</version>
+  <version>1.0.2</version>
 </dependency>
 ```
 ...or the equivalent to you favorite build tool.
