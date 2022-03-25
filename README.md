@@ -1,5 +1,5 @@
 # fx-yearmonth-picker
-A year-month date picker component for java fx. Requires java fx 8 or higher (tested with jdk/fx 8 and 11)
+A year-month date picker component for java fx. Requires java 11 and javafx 11 or higher (tested with jdk 11 and jfx 17.02)
 
 There are two versions:
 1. YearMonthPickerCombo - a combobox that return a YearMonth. 
@@ -23,10 +23,16 @@ the release section or add the following to your maven file:
 <dependency>
   <groupId>se.alipsa</groupId>
   <artifactId>fx-yearmonth-picker</artifactId>
-  <version>1.0.2</version>
+  <version>1.1.0</version>
 </dependency>
 ```
 ...or the equivalent to you favorite build tool.
+
+Note that the dependency on java fx is set to "provided" meaning that you need to add
+a dependency to javafx explicitly in your project or use a jvm where javafx is bundled 
+(such as Bellsofts liberica full)
+
+The module name for this library is `se.alipsa.ymp`
 
 ## se.alipsa.ymp.YearMonthPickerCombo
 There are 5 constructors:
