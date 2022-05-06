@@ -84,6 +84,9 @@ month names will be displayed in the popup. Default is "MMMM" (long format), set
 or include the year with "yyyy-MMM" or whatever. The display value (when a year month is chosen) will be displayed in the 
 format provided with the yearMonthPattern argument.
 
+
+Javadocs are available online [here ![javadoc](https://javadoc.io/badge2/se.alipsa/fx-yearmonth-picker/javadoc.svg)](https://javadoc.io/doc/se.alipsa/fx-yearmonth-picker)
+
 ## Customization
 The YearMonthPicker has a style class called "year-month-picker", and the YearMonthPickerCombo a style class called
 "year-month-picker-combo" which can be used to specify specific css styling for the components. 
