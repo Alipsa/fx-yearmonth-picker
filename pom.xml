@@ -34,8 +34,9 @@
 
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <javafx.version>17.0.2</javafx.version>
+      <javafx.version>18</javafx.version>
       <maven.compiler.release>11</maven.compiler.release>
+      <junit.version>5.8.2</junit.version>
    </properties>
 
    <dependencies>
@@ -48,7 +49,7 @@
       <dependency>
          <groupId>org.junit.jupiter</groupId>
          <artifactId>junit-jupiter</artifactId>
-         <version>5.8.2</version>
+         <version>${junit.version}</version>
          <scope>test</scope>
       </dependency>
    </dependencies>
@@ -85,7 +86,27 @@
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.10.0</version>
+            <version>3.10.1</version>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0-M6</version>
+            <configuration>
+               <useModulePath>false</useModulePath>
+            </configuration>
+            <dependencies>
+               <dependency>
+                  <groupId>org.junit.jupiter</groupId>
+                  <artifactId>junit-jupiter-engine</artifactId>
+                  <version>${junit.version}</version>
+               </dependency>
+            </dependencies>
+         </plugin>
+         <plugin>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-maven-plugin</artifactId>
+            <version>0.0.8</version>
          </plugin>
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -116,7 +137,7 @@
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-site-plugin</artifactId>
-            <version>3.11.0</version>
+            <version>3.10.0</version>
             <configuration>
                <generateReports>false</generateReports>
             </configuration>
