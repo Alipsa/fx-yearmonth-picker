@@ -24,47 +24,7 @@ import java.util.concurrent.CountDownLatch;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class YearMonthPickerTest extends Application {
-
-    Stage stage;
-
-    @Override
-    public void start(Stage stage) {
-        this.stage = stage;
-        VBox vBox = new VBox();
-        vBox.setPadding(new Insets(10));
-
-
-
-        YearMonthPicker picker = new YearMonthPicker(YearMonth.of(2019, 1), YearMonth.of(2020, 8),
-            YearMonth.of(2019,12), Locale.SIMPLIFIED_CHINESE, "MMMM", "yyyy MMMM");
-        picker.setOnAction(a -> System.out.println("Chinese YearMonthPicker, Value picked was " + picker.getValue()));
-        HBox hbox2 = new HBox(new Label("YearMonthPicker: "), picker);
-        hbox2.setAlignment(Pos.CENTER_LEFT);
-        hbox2.setPadding(new Insets(10));
-        vBox.getChildren().add(hbox2);
-
-        YearMonthPickerCombo ympc = new YearMonthPickerCombo();
-        ympc.setOnAction(a -> System.out.println("YearMonthPickerCombo: value picked was " + ympc.getValue()));
-        HBox cboBox = new HBox(new Label("YearMonthPickerCombo: "), ympc);
-        cboBox.setAlignment(Pos.CENTER_LEFT);
-        cboBox.setPadding(new Insets(10));
-        vBox.getChildren().add(cboBox);
-
-        YearMonthPickerCombo ympc2 = new YearMonthPickerCombo(YearMonth.now().minusYears(2),
-                YearMonth.now().plusYears(2), YearMonth.now(), Locale.forLanguageTag("sv-SE"), "MMMM yy");
-        ympc2.setOnAction(a -> System.out.println("YearMonthPickerCombo: value picked was " + ympc2.getValue()));
-        HBox cboBox2 = new HBox(new Label("YearMonthPickerCombo: "), ympc2);
-        cboBox2.setAlignment(Pos.CENTER_LEFT);
-        cboBox2.setPadding(new Insets(10));
-        vBox.getChildren().add(cboBox2);
-
-        Scene scene = new Scene(vBox, 350, 220);
-        stage.setScene(scene);
-        stage.show();
-        stage.toFront();
-    }
-
+public class YearMonthPickerTest {
 
     @BeforeAll
     public static void setupJavaFX() throws InterruptedException {
@@ -93,6 +53,10 @@ public class YearMonthPickerTest extends Application {
         ymp.setOnAction(a -> ymp.setValue(ymp.getValue().plusMonths(1)));
         Event.fireEvent(ymp, new ActionEvent());
         assertEquals(YearMonth.of(2022, 6), ymp.getValue());
+
+        YearMonthPicker picker = new YearMonthPicker(YearMonth.of(2019, 1), YearMonth.of(2020, 8),
+            YearMonth.of(2019,12), Locale.SIMPLIFIED_CHINESE, "MMMM", "yyyy MMMM");
+        assertEquals(YearMonth.of(2019, 12), picker.getValue());
     }
 
     @Test
