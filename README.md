@@ -1,4 +1,7 @@
 # fx-yearmonth-picker
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/se.alipsa/fx-yearmonth-picker/badge.svg)](https://maven-badges.herokuapp.com/maven-central/se.alipsa/fx-yearmonth-picker)
+[![javadoc](https://javadoc.io/badge2/se.alipsa/fx-yearmonth-picker/javadoc.svg)](https://javadoc.io/doc/se.alipsa/fx-yearmonth-picker)
+
 A year-month date picker component for java fx. Requires java 11 and javafx 11 or higher (tested with jdk 11 and jfx 17.02)
 
 There are two versions:
@@ -83,9 +86,6 @@ initial value as the default selected in the locale specified. MonthNameFormat i
 month names will be displayed in the popup. Default is "MMMM" (long format), set to "MMM" for the letter short style
 or include the year with "yyyy-MMM" or whatever. The display value (when a year month is chosen) will be displayed in the 
 format provided with the yearMonthPattern argument.
-
-
-Javadocs are available online [here ![javadoc](https://javadoc.io/badge2/se.alipsa/fx-yearmonth-picker/javadoc.svg)](https://javadoc.io/doc/se.alipsa/fx-yearmonth-picker)
 
 ## Customization
 The YearMonthPicker has a style class called "year-month-picker", and the YearMonthPickerCombo a style class called
