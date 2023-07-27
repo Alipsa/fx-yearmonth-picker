@@ -41,6 +41,14 @@ public class YearMonthPicker extends ComboBoxBase<YearMonth> {
         this(initial.minusYears(3), initial.plusYears(3), initial, locale, "MMMM");
     }
 
+    public YearMonthPicker(YearMonth from, YearMonth to, YearMonth initial) {
+        this(from, to, initial, "yyyy-MMM");
+    }
+
+    public YearMonthPicker(YearMonth from, YearMonth to, YearMonth initial, String monthPattern) {
+        this(from, to, initial, Locale.getDefault(), monthPattern);
+    }
+
     public YearMonthPicker(YearMonth from, YearMonth to, YearMonth initial, Locale locale, String monthPattern) {
         this(from, to, initial, locale, monthPattern, "yyyy-MM");
     }
